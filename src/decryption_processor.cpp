@@ -30,7 +30,7 @@ bool DecryptionProcessor::decrypt(uint8_t** buffer, uintmax_t* length, const std
 
 	// Create a key map object to hold decryption keys
 	unsigned char key[16];
-	AP4_ParseHex(decryptionKey, key, 16);
+	AP4_ParseHex(decryptionKey.c_str(), key, 16);
 	keyMap->SetKey(1, key, 16);
 
 	// Create the input stream
@@ -76,7 +76,7 @@ bool DecryptionProcessor::decrypt(uint8_t** in_buffer, uintmax_t* in_length, uin
 
 	// Create a key map object to hold decryption keys
 	unsigned char key[16];
-	AP4_ParseHex(decryptionKey, key, 16);
+	AP4_ParseHex(decryptionKey.c_str(), key, 16);
 	keyMap->SetKey(1, key, 16);
 
 	// Create the input stream
