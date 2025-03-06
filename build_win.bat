@@ -19,7 +19,7 @@ copy /y /v "Bento4\Source\C++\Crypto\*.cpp" "src"
 copy /y /v "Bento4\Source\C++\MetaData\*.h" "src"
 copy /y /v "Bento4\Source\C++\MetaData\*.cpp" "src"
 
-del Bento4
+rmdir /s Bento4
 
 REM Configure CMake
 cmake -B build -DCMAKE_BUILD_TYPE=Debug
