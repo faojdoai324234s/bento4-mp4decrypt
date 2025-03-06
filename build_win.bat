@@ -16,6 +16,9 @@ copy /y /v "Bento4\Source\C++\Codecs\*.cpp" "src"
 copy /y /v "Bento4\Source\C++\Crypto\*.h" "src"
 copy /y /v "Bento4\Source\C++\Crypto\*.cpp" "src"
 
+copy /y /v "Bento4\Source\C++\MetaData\*.h" "src"
+copy /y /v "Bento4\Source\C++\MetaData\*.cpp" "src"
+
 del Bento4
 
 REM Configure CMake
