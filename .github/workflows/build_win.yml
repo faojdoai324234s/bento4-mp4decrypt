@@ -1,0 +1,27 @@
+name: Windows Build
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: windows-2019
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Build library
+      run: build_win.bat
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: Windows-artifact
+        path: ${{github.workspace}}/upload
+        if-no-files-found: ignore
+        retention-days: 0

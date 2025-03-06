@@ -1,0 +1,27 @@
+name: macOS Build
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: macos-13
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Build library
+      run: build_macos.sh
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: macOS-artifact
+        path: ${{github.workspace}}/upload
+        if-no-files-found: ignore
+        retention-days: 0
