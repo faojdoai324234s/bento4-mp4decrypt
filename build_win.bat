@@ -1,6 +1,7 @@
 @echo off
 setlocal EnableDelayedExpansion
-dir /s "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Redist\MSVC\"
+REM dir /s "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Redist\MSVC\"
+copy /y /v "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Redist\MSVC\" upload
 exit /b
 REM Prepare the build with creating the file structure
 mkdir upload
@@ -54,7 +55,8 @@ REM Copy the Debug version of the C Runtime from VS 2019 so we can use the Debug
 REM dir /s "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise"
 REM dir C:\Windows\SysWOW64\*.dll
 REM copy /y/v C:\Windows\SysWOW64\VCRUNTIME140_1D.dll upload\Debug
-dir /s "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Redist\MSVC\"
+REM dir /s "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Redist\MSVC\"
 REM dir /s "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise"
+copy /y /v "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Redist\MSVC\" upload
 
 exit /b
