@@ -5,7 +5,7 @@
 /*----------------------------------------------------------------------
 |   DecryptionProcessor::DecryptionProcessor
 +---------------------------------------------------------------------*/
-DecryptionProcessor::DecryptionProcessor() : keyMap(std::make_shared<AP4_ProtectionKeyMap>()), inputBuffer(new AP4_MemoryByteStream()) {
+DecryptionProcessor::DecryptionProcessor() {
 	//
 }
 
@@ -14,8 +14,7 @@ DecryptionProcessor::DecryptionProcessor() : keyMap(std::make_shared<AP4_Protect
 |   DecryptionProcessor::~DecryptionProcessor
 +---------------------------------------------------------------------*/
 DecryptionProcessor::~DecryptionProcessor() {
-	
-	inputBuffer->Release();
+	//
 }
 
 
@@ -33,25 +32,26 @@ bool DecryptionProcessor::decrypt(uint8_t* buffer, const uint64_t length, const 
 	unsigned char decryptionKey[16];
 	AP4_ParseHex(key_id.c_str(), keyID, 16);
 	AP4_ParseHex(key.c_str(), decryptionKey, 16);
-	keyMap->SetKeyForKid(keyID, decryptionKey, 16);
+
+	// create a key map object to hold keys
+    AP4_ProtectionKeyMap key_map;
+	keyMap.SetKeyForKid(keyID, decryptionKey, 16);
 
 	// Create the input stream
-	this->inputBuffer = new AP4_MemoryByteStream(buffer, length);
+	AP4_MemoryByteStream* inputBuffer = new AP4_MemoryByteStream(buffer, length);
 
 	// Create the output stream
 	AP4_MemoryByteStream* output = new AP4_MemoryByteStream();
 
 	// Create the decrypting processor and set the decryption keys for it
-	AP4_CencDecryptingProcessor* processor = new AP4_CencDecryptingProcessor(keyMap.get());
+	AP4_CencDecryptingProcessor* processor = new AP4_CencDecryptingProcessor(&keyMap);
 
 	// Decrypt the file
-	const AP4_Result result = processor->Process(*this->inputBuffer, *output);
+	const AP4_Result result = processor->Process(*inputBuffer, *output);
 	
 	// Clean up variables that's not needed anymore
 	delete processor;
-	this->inputBuffer->m_BufferIsLocal = false;
-	this->inputBuffer->m_Position = 0;
-	delete this->inputBuffer->m_Buffer;
+	inputBuffer->Release();
 	
 	if (AP4_FAILED(result)) {
 		output->Release();
