@@ -26,15 +26,15 @@ cmake -B build -DCMAKE_BUILD_TYPE=Debug
 REM Build CMake
 cmake --build build --config Debug
 
-dir /s
+REM dir /s
 
 copy /y /v build\Debug\*.dll upload\Debug
 copy /y /v build\Debug\*.lib upload\Debug
 copy /y /v build\Debug\*.pdb upload\Debug
 copy /y /v include upload\include
 
-del /f /s /q \build
+del /f /s /q build
 
-dir
+dir /s
 
 exit /b
