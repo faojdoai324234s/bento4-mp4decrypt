@@ -3,7 +3,7 @@ setlocal EnableDelayedExpansion
 
 REM Prepare the build with creating the file structure
 mkdir upload
-mkdir upload\include
+mkdir upload\include\mp4decrypt
 mkdir upload\Debug
 mkdir upload\Release
 
@@ -48,6 +48,6 @@ copy /y /v build\Release\*.dll upload\Release
 copy /y /v build\Release\*.lib upload\Release
 
 REM Copy over the headers
-copy /y /v include upload\include
+copy /y /v include upload\include\mp4decrypt
 
 exit /b
