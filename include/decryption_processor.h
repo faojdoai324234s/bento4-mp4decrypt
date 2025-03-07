@@ -3,7 +3,6 @@
 
 #include <atomic>
 #include <cstdint>
-//#include <memory>
 #include <string>
 
 // A class for decrypting CENC-encrypted data. If AES-NI is present in the CPU, the decryption operation will be hardware-accelerated.
@@ -52,7 +51,7 @@ private:
 
 
 private:
-	const std::atomic_size_t max_alloc_size = ATOMIC_VAR_INIT(INT_MAX);
+	const std::atomic_size_t max_alloc_size = ATOMIC_VAR_INIT(INT64_MAX);
 };
 
 #endif // !DECRYPTION_PROCESSOR_H
