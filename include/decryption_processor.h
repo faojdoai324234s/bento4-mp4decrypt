@@ -6,8 +6,7 @@
 #include <memory>
 #include <string>
 
-#include "Ap4ByteStream.h"
-#include "Ap4Protection.h"
+#include "Ap4CommonEncryption.h"
 
 // A class for decrypting CENC-encrypted data. If AES-NI is present in the CPU, the decryption operation will be hardware-accelerated.
 class DecryptionProcessor final {
@@ -55,8 +54,7 @@ private:
 
 
 private:
-	AP4_MemoryByteStream* inputBuffer;
-	std::shared_ptr<AP4_ProtectionKeyMap> keyMap;
+	AP4_CencDecryptingProcessor* processor;
 
 	const std::atomic_size_t max_alloc_size = ATOMIC_VAR_INIT(INT_MAX);
 };
