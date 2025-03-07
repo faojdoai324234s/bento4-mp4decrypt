@@ -6,6 +6,8 @@
 #include <memory>
 #include <string>
 
+#include "Ap4ByteStream.h"
+
 // A class for decrypting CENC-encrypted data. If AES-NI is present in the CPU, the decryption operation will be hardware-accelerated.
 class DecryptionProcessor final {
 	
