@@ -3,7 +3,7 @@
 
 #include <atomic>
 #include <cstdint>
-#include <memory>
+//#include <memory>
 #include <string>
 
 // A class for decrypting CENC-encrypted data. If AES-NI is present in the CPU, the decryption operation will be hardware-accelerated.
