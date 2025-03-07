@@ -30,7 +30,7 @@ cmake --build build --config Debug
 
 REM Copy over the built files
 copy /y /v build\Debug\*.dll upload\Debug
-copy /y /v build\Debug\*.lib upload\Debug
+copy /y /v build\Debug\mp4decrypt.lib upload\Debug\mp4decrypt_debug.lib
 copy /y /v build\Debug\*.pdb upload\Debug
 
 REM Clean up before we run CMake again
