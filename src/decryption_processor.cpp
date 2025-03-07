@@ -15,26 +15,30 @@ DecryptionProcessor::DecryptionProcessor() : processor(new AP4_CencDecryptingPro
 DecryptionProcessor::~DecryptionProcessor() {
 	
 	delete processor;
-	inputBuffer->Release();
+	if (inputBuffer) {
+		inputBuffer->~AP4_MemoryByteStream();
+	}
 }
 
 
 /*----------------------------------------------------------------------
 |   DecryptionProcessor::decrypt
 +---------------------------------------------------------------------*/
-bool DecryptionProcessor::decrypt(uint8_t** buffer, uintmax_t* length, const std::string& decryptionKey) {
+bool DecryptionProcessor::decrypt(uint8_t* buffer, const uint64_t length, const std::string& key_id, const std::string& key) {
 	
-	if (decryptionKey.size() != 32) {
+	if (key.size() != 32 || key_id.size() != 32) {
 		return false;
 	}
 
 	// Create a key map object to hold decryption keys
-	unsigned char key[16];
-	AP4_ParseHex(decryptionKey.c_str(), key, 16);
-	keyMap->SetKey(1, key, 16);
+	unsigned char keyID[16];
+	unsigned char decryptionKey[16];
+	AP4_ParseHex(key_id.c_str(), keyID, 16);
+	AP4_ParseHex(key.c_str(), decryptionKey, 16);
+	keyMap->SetKeyForKid(keyID, decryptionKey, 16);
 
 	// Create the input stream
-	this->inputBuffer->SetBuffer(*buffer, *length);
+	this->inputBuffer = new AP4_MemoryByteStream(buffer, length);
 
 	// Create the output stream
 	AP4_MemoryByteStream* output = new AP4_MemoryByteStream();
@@ -43,68 +47,24 @@ bool DecryptionProcessor::decrypt(uint8_t** buffer, uintmax_t* length, const std
 	processor->SetKeyMap(keyMap.get());
 
 	// Decrypt the file
-	AP4_Result result = processor->Process(*this->inputBuffer, *output);
-	this->inputBuffer->Clear();
+	const AP4_Result result = processor->Process(*this->inputBuffer, *output);
+	this->inputBuffer->~AP4_MemoryByteStream();
+	this->inputBuffer = nullptr;
 	if (AP4_FAILED(result)) {
-		output->Release();
+		output->~AP4_MemoryByteStream();
 		return false;
 	}
 
 	// Prepare the original buffer
-	av_free(*buffer);
-	*length = output->GetDataSize();
-	*buffer = (uint8_t*)av_malloc(*length);
+	av_free(buffer);
+	const uint64_t newSize = output->GetDataSize();
+	buffer = (uint8_t*)av_malloc(newSize);
 
 	// Copy the decrypted data back to the original buffer
-	memcpy(*buffer, output->GetData(), *length);
+	memcpy(buffer, output->GetData(), newSize);
 
 	// Clean up the data and return
-	output->Release();
-
-	return true;
-}
-
-
-/*----------------------------------------------------------------------
-|   DecryptionProcessor::decrypt
-+---------------------------------------------------------------------*/
-bool DecryptionProcessor::decrypt(uint8_t** in_buffer, uintmax_t* in_length, uint8_t** out_buffer, uintmax_t* out_length, const std::string& decryptionKey) {
-
-	if (decryptionKey.size() != 32) {
-		return false;
-	}
-
-	// Create a key map object to hold decryption keys
-	unsigned char key[16];
-	AP4_ParseHex(decryptionKey.c_str(), key, 16);
-	keyMap->SetKey(1, key, 16);
-
-	// Create the input stream
-	this->inputBuffer->SetBuffer(*in_buffer, *in_length);
-
-	// Create the output stream
-	AP4_MemoryByteStream* output = new AP4_MemoryByteStream();
-
-	// Set the decryption keys for the decrypting processor
-	processor->SetKeyMap(keyMap.get());
-
-	// Decrypt the file
-	AP4_Result result = processor->Process(*this->inputBuffer, *output);
-	this->inputBuffer->Clear();
-	if (AP4_FAILED(result)) {
-		output->Release();
-		return false;
-	}
-
-	// Prepare the output buffer
-	*out_length = output->GetDataSize();
-	*out_buffer = (uint8_t*)av_malloc(*out_length);
-
-	// Copy the decrypted data to the output buffer
-	memcpy(*out_buffer, output->GetData(), *out_length);
-
-	// Clean up the data and return
-	output->Release();
+	output->~AP4_MemoryByteStream();
 
 	return true;
 }
