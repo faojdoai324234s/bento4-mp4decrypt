@@ -1,5 +1,5 @@
-#ifndef DECRYPTION_PROCESSOR_H
-#define DECRYPTION_PROCESSOR_H
+#ifndef _AP4_DECRYPTION_PROCESSOR_H
+#define _AP4_DECRYPTION_PROCESSOR_H
 
 #include <atomic>
 #include <cstdint>
@@ -54,4 +54,4 @@ private:
 	const std::atomic_size_t max_alloc_size = ATOMIC_VAR_INIT(INT64_MAX);
 };
 
-#endif // !DECRYPTION_PROCESSOR_H
+#endif // !_AP4_DECRYPTION_PROCESSOR_H
