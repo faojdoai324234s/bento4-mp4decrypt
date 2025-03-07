@@ -6,8 +6,7 @@ mkdir upload
 mkdir upload\include\mp4decrypt
 mkdir upload\Debug
 mkdir upload\Release
-REM xcopy /s /e /h /i /y /q "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Redist\MSVC\14.29.30133" upload
-REM exit /b
+
 git clone https://github.com/axiomatic-systems/Bento4
 
 REM Copy over the source files from Bento4
