@@ -1,7 +1,6 @@
 @echo off
 setlocal EnableDelayedExpansion
 
-mkdir build
 mkdir upload
 mkdir upload\include
 mkdir upload\Debug
@@ -31,7 +30,6 @@ REM Copy over the built files
 copy /y /v build\Debug\*.dll upload\Debug
 copy /y /v build\Debug\*.lib upload\Debug
 copy /y /v build\Debug\*.pdb upload\Debug
-copy /y /v include upload\include
 
 rmdir /s /q build
 
@@ -41,6 +39,11 @@ cmake -B build -DCMAKE_BUILD_TYPE=Release
 REM Build CMake for Release build
 cmake --build build --config Release
 
-dir /s
+REM Copy over the built files
+copy /y /v build\Release\*.dll upload\Release
+copy /y /v build\Release\*.lib upload\Release
+
+REM Copy over the headers
+copy /y /v include upload\include
 
 exit /b
