@@ -50,6 +50,8 @@ REM Copy over the headers
 copy /y /v include upload\include\mp4decrypt
 
 REM Copy the Debug version of the C Runtime from VS 2019 so we can use the Debug build in VS 2017
+dir C:\Windows\SysWOW64\*.dll
+dir D:\Windows\SysWOW64\*.dll
 copy /y/v C:\Windows\SysWOW64\VCRUNTIME140_1D.dll upload\Debug
 
 exit /b
