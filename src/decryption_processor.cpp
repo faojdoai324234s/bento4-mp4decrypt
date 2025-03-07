@@ -1,6 +1,8 @@
 #include "decryption_processor.h"
 #include "Ap4CommonEncryption.h"
 
+#include <memory>
+
 
 /*----------------------------------------------------------------------
 |   DecryptionProcessor::DecryptionProcessor
