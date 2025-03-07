@@ -4,7 +4,7 @@
 /*----------------------------------------------------------------------
 |   DecryptionProcessor::DecryptionProcessor
 +---------------------------------------------------------------------*/
-DecryptionProcessor::DecryptionProcessor() : processor(new AP4_CencDecryptingProcessor(nullptr)), keyMap(std::make_shared<AP4_ProtectionKeyMap>()), inputBuffer(new AP4_MemoryByteStream()) {
+DecryptionProcessor::DecryptionProcessor() : keyMap(std::make_shared<AP4_ProtectionKeyMap>()), inputBuffer(new AP4_MemoryByteStream()) {
 	//
 }
 
@@ -14,7 +14,6 @@ DecryptionProcessor::DecryptionProcessor() : processor(new AP4_CencDecryptingPro
 +---------------------------------------------------------------------*/
 DecryptionProcessor::~DecryptionProcessor() {
 	
-	delete processor;
 	inputBuffer->Release();
 }
 
@@ -41,14 +40,18 @@ bool DecryptionProcessor::decrypt(uint8_t* buffer, const uint64_t length, const 
 	// Create the output stream
 	AP4_MemoryByteStream* output = new AP4_MemoryByteStream();
 
-	// Set the decryption keys for the decrypting processor
-	processor->SetKeyMap(keyMap.get());
+	// Create the decrypting processor and set the decryption keys for it
+	AP4_CencDecryptingProcessor* processor = new AP4_CencDecryptingProcessor(keyMap.get());
 
 	// Decrypt the file
 	const AP4_Result result = processor->Process(*this->inputBuffer, *output);
+	
+	// Clean up variables that's not needed anymore
+	delete processor;
 	this->inputBuffer->m_BufferIsLocal = false;
 	this->inputBuffer->m_Position = 0;
 	delete this->inputBuffer->m_Buffer;
+	
 	if (AP4_FAILED(result)) {
 		output->Release();
 		return false;
