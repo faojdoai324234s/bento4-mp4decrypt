@@ -25,20 +25,11 @@ public:
 
 	/// <summary>Decrypts a buffer of data.</summary>
 	/// <param name="buffer">The encrypted buffer to decrypt. This buffer will be overriden with the new decrypted buffer.</param>
-	/// <param name="length">The length of the buffer in bytes. This value will be overridden with the length of the new decrypted buffer.</param>
-	/// <param name="decryptionKey">The decryption key. The key must be 16 bytes long (32 characters).</param>
+	/// <param name="length">The length of the buffer in bytes.</param>
+	/// <param name="key_id">The key ID. The key ID must be 16 bytes long (32 characters).</param>
+	/// <param name="key">The decryption key. The key must be 16 bytes long (32 characters).</param>
 	/// <returns>True if the operation succeeded, false otherwise.</returns>
-	bool decrypt(uint8_t** buffer, uintmax_t* length, const std::string& decryptionKey);
-
-
-	/// <summary>Decrypts a buffer of data.</summary>
-	/// <param name="in_buffer">The encrypted buffer to decrypt.</param>
-	/// <param name="in_length">The length of the encrypted buffer in bytes.</param>
-	/// <param name="out_buffer">The decrypted buffer. The memory must not be allocated.</param>
-	/// <param name="out_length">The length of the decrypted buffer in bytes.</param>
-	/// <param name="decryptionKey">The decryption key. The key must be 16 bytes long (32 characters).</param>
-	/// <returns>True if the operation succeeded, false otherwise.</returns>
-	bool decrypt(uint8_t** in_buffer, uintmax_t* in_length, uint8_t** out_buffer, uintmax_t* out_length, const std::string& decryptionKey);
+	bool decrypt(uint8_t* buffer, const uint64_t length, const std::string& key_id, const std::string& key);
 	
 
 private:
