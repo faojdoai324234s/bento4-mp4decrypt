@@ -1,6 +1,7 @@
 @echo off
 setlocal EnableDelayedExpansion
 
+REM Prepare the build with creating the file structure
 mkdir upload
 mkdir upload\include
 mkdir upload\Debug
@@ -8,6 +9,7 @@ mkdir upload\Release
 
 git clone https://github.com/axiomatic-systems/Bento4
 
+REM Copy over the source files from Bento4
 copy /y /v "Bento4\Source\C++\Core\*.h" src
 copy /y /v "Bento4\Source\C++\Core\*.cpp" src
 
@@ -31,6 +33,7 @@ copy /y /v build\Debug\*.dll upload\Debug
 copy /y /v build\Debug\*.lib upload\Debug
 copy /y /v build\Debug\*.pdb upload\Debug
 
+REM Clean up before we run CMake again
 rmdir /s /q build
 
 REM Configure CMake for Release build
