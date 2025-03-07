@@ -1,14 +1,13 @@
 @echo off
 setlocal EnableDelayedExpansion
-REM dir /s "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Redist\MSVC\"
 
 REM Prepare the build with creating the file structure
 mkdir upload
 mkdir upload\include\mp4decrypt
 mkdir upload\Debug
 mkdir upload\Release
-xcopy /s /e /h /i /y /q "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Redist\MSVC\14.29.30133" upload
-exit /b
+REM xcopy /s /e /h /i /y /q "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Redist\MSVC\14.29.30133" upload
+REM exit /b
 git clone https://github.com/axiomatic-systems/Bento4
 
 REM Copy over the source files from Bento4
@@ -52,11 +51,6 @@ REM Copy over the headers
 copy /y /v include upload\include\mp4decrypt
 
 REM Copy the Debug version of the C Runtime from VS 2019 so we can use the Debug build in VS 2017
-REM dir /s "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise"
-REM dir C:\Windows\SysWOW64\*.dll
-REM copy /y/v C:\Windows\SysWOW64\VCRUNTIME140_1D.dll upload\Debug
-REM dir /s "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Redist\MSVC\"
-REM dir /s "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise"
-copy /y /v "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Redist\MSVC\" upload
+copy /y /v "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Redist\MSVC\14.29.30133\debug_nonredist\x64\Microsoft.VC142.DebugCRT\vcruntime140_1d.dll" upload\Debug
 
 exit /b
