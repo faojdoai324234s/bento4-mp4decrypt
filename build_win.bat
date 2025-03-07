@@ -28,18 +28,11 @@ cmake -B build -DCMAKE_BUILD_TYPE=Debug
 REM Build CMake for Debug build
 cmake --build build --config Debug
 
-REM Rename the Debug files to avoid name clash when using both Debug and Release builds simultaneously
-cd build\Debug
-rename mp4decrypt.dll mp4decrypt_debug.dll
-rename mp4decrypt.lib mp4decrypt_debug.lib
-rename mp4decrypt.pdb mp4decrypt_debug.pdb
-
-cd ..
 
 REM Copy over the built files
-copy /y /v build\Debug\*.dll upload\Debug
-copy /y /v build\Debug\*.lib upload\Debug
-copy /y /v build\Debug\*.pdb upload\Debug
+copy /y /v build\Debug\mp4decrypt.dll upload\Debug\mp4decrypt_debug.dll
+copy /y /v build\Debug\mp4decrypt.lib upload\Debug\mp4decrypt_debug.lib
+copy /y /v build\Debug\mp4decrypt.pdb upload\Debug\mp4decrypt_debug.pdb
 
 REM Clean up before we run CMake again
 rmdir /s /q build
