@@ -33,7 +33,7 @@ copy /y /v build\Debug\*.lib upload\Debug
 copy /y /v build\Debug\*.pdb upload\Debug
 copy /y /v include upload\include
 
-del /f /s /q build
+rmdir /s /q build
 
 dir /s
 
