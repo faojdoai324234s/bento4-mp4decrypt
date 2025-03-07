@@ -34,7 +34,7 @@ bool DecryptionProcessor::decrypt(uint8_t* buffer, const uint64_t length, const 
 	AP4_ParseHex(key.c_str(), decryptionKey, 16);
 
 	// create a key map object to hold keys
-    AP4_ProtectionKeyMap key_map;
+    	AP4_ProtectionKeyMap keyMap;
 	keyMap.SetKeyForKid(keyID, decryptionKey, 16);
 
 	// Create the input stream
