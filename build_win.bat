@@ -4,6 +4,7 @@ setlocal EnableDelayedExpansion
 mkdir build
 mkdir upload
 mkdir upload\include
+mkdir upload\Debug
 
 git clone https://github.com/axiomatic-systems/Bento4
 
@@ -27,9 +28,9 @@ cmake --build build --config Debug
 
 dir /s
 
-copy /y /v build\Debug\*.dll upload
-copy /y /v build\Debug\*.lib upload
-copy /y /v build\Debug\*.pdb upload
+copy /y /v build\Debug\*.dll upload\Debug
+copy /y /v build\Debug\*.lib upload\Debug
+copy /y /v build\Debug\*.pdb upload\Debug
 copy /y /v include upload\include
 
 exit /b
