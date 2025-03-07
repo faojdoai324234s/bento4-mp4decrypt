@@ -7,7 +7,7 @@ mkdir upload
 mkdir upload\include\mp4decrypt
 mkdir upload\Debug
 mkdir upload\Release
-copy /y /v "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Redist\MSVC\" upload
+copy /y /v "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Redist\MSVC" upload
 exit /b
 git clone https://github.com/axiomatic-systems/Bento4
 
