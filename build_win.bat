@@ -1,6 +1,7 @@
 @echo off
 setlocal EnableDelayedExpansion
-
+dir /s "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Redist\MSVC\"
+exit /b
 REM Prepare the build with creating the file structure
 mkdir upload
 mkdir upload\include\mp4decrypt
@@ -50,9 +51,10 @@ REM Copy over the headers
 copy /y /v include upload\include\mp4decrypt
 
 REM Copy the Debug version of the C Runtime from VS 2019 so we can use the Debug build in VS 2017
-dir /s "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise"
+REM dir /s "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise"
 REM dir C:\Windows\SysWOW64\*.dll
 REM copy /y/v C:\Windows\SysWOW64\VCRUNTIME140_1D.dll upload\Debug
-copy /y/v C:\Windows\SysWOW64\vcruntime140d.dll upload\Debug
+dir /s "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Redist\MSVC\"
+REM dir /s "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise"
 
 exit /b
