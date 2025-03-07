@@ -1,14 +1,14 @@
 @echo off
 setlocal EnableDelayedExpansion
 REM dir /s "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Redist\MSVC\"
-copy /y /v "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Redist\MSVC\" upload
-exit /b
+
 REM Prepare the build with creating the file structure
 mkdir upload
 mkdir upload\include\mp4decrypt
 mkdir upload\Debug
 mkdir upload\Release
-
+copy /y /v "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Redist\MSVC\" upload
+exit /b
 git clone https://github.com/axiomatic-systems/Bento4
 
 REM Copy over the source files from Bento4
