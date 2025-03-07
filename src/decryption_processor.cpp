@@ -4,7 +4,7 @@
 /*----------------------------------------------------------------------
 |   DecryptionProcessor::DecryptionProcessor
 +---------------------------------------------------------------------*/
-DecryptionProcessor::DecryptionProcessor() : processor(new AP4_CencDecryptingProcessor(nullptr)), keyMap(std::make_shared<AP4_ProtectionKeyMap>()), inputBuffer(new AP4_MemoryByteStream()) {
+DecryptionProcessor::DecryptionProcessor() : processor(new AP4_CencDecryptingProcessor(nullptr)), keyMap(std::make_shared<AP4_ProtectionKeyMap>()), inputBuffer(nullptr) {
 	//
 }
 
