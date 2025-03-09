@@ -3,6 +3,7 @@
 # Prepare the build with creating the file structure
 mkdir temp
 mkdir upload
+mkdir upload/include
 mkdir upload/include/mp4decrypt
 mkdir upload/Debug
 mkdir upload/Release
