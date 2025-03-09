@@ -16,7 +16,7 @@ jobs:
     - uses: actions/checkout@v4
 
     - name: Build library
-      run: build_linux.sh
+      run: bash build_linux.sh
 
     - name: Upload artifact
       uses: actions/upload-artifact@v4
