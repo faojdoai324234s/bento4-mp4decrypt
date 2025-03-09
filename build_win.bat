@@ -2,12 +2,16 @@
 setlocal EnableDelayedExpansion
 
 REM Prepare the build with creating the file structure
+mkdir temp
 mkdir upload
 mkdir upload\include\mp4decrypt
 mkdir upload\Debug
 mkdir upload\Release
 
 git clone https://github.com/axiomatic-systems/Bento4
+
+REM Copy the source files which will be overwritten
+copy src\*.cpp temp
 
 REM Copy over the source files from Bento4
 copy /y /v "Bento4\Source\C++\Core\*.h" src
@@ -17,7 +21,10 @@ copy /y /v "Bento4\Source\C++\Codecs\*.h" src
 copy /y /v "Bento4\Source\C++\Codecs\*.cpp" src
 
 copy /y /v "Bento4\Source\C++\Crypto\*.h" src
-copy /-y /v "Bento4\Source\C++\Crypto\*.cpp" src
+copy /y /v "Bento4\Source\C++\Crypto\*.cpp" src
+
+REM Copy back the files which were overwritten
+copy /y /v temp\*.cpp src
 
 copy /y /v "Bento4\Source\C++\MetaData\*.h" src
 copy /y /v "Bento4\Source\C++\MetaData\*.cpp" src
