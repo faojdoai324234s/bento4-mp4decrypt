@@ -58,6 +58,5 @@ copy /y /v include upload\include\mp4decrypt
 
 REM Copy the Debug version of the C Runtime from VS 2019 so we can use the Debug build in VS 2017
 copy /y /v "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Redist\MSVC\14.29.30133\debug_nonredist\x64\Microsoft.VC142.DebugCRT\vcruntime140_1d.dll" upload\Debug
-copy /y /v src\Ap4AesBlockCipher.cpp upload
 
 exit /b
