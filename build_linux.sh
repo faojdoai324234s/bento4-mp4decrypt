@@ -51,3 +51,5 @@ cmake --build build --config Release
 
 # Copy over the headers
 cp -r include/. upload/include/mp4decrypt
+echo "Listing build files..."
+ls -R /home/runner/work/bento4-mp4decrypt/bento4-mp4decrypt/build
