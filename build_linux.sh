@@ -3,9 +3,9 @@
 # Prepare the build with creating the file structure
 mkdir temp
 mkdir upload
-mkdir upload\include\mp4decrypt
-mkdir upload\Debug
-mkdir upload\Release
+mkdir upload/include/mp4decrypt
+mkdir upload/Debug
+mkdir upload/Release
 
 git clone https://github.com/axiomatic-systems/Bento4
 ls
