@@ -17,7 +17,7 @@ copy /y /v "Bento4\Source\C++\Codecs\*.h" src
 copy /y /v "Bento4\Source\C++\Codecs\*.cpp" src
 
 copy /y /v "Bento4\Source\C++\Crypto\*.h" src
-echo n | copy /-y /v "Bento4\Source\C++\Crypto\*.cpp" src
+copy /v "Bento4\Source\C++\Crypto\*.cpp" src
 
 copy /y /v "Bento4\Source\C++\MetaData\*.h" src
 copy /y /v "Bento4\Source\C++\MetaData\*.cpp" src
