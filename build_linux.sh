@@ -11,7 +11,7 @@ mkdir upload/Release
 git clone https://github.com/axiomatic-systems/Bento4
 
 # Copy the source files which will be overwritten
-cp src/. temp
+cp -r src/. temp
 echo "List temp files..."
 ls temp
 
