@@ -17,7 +17,7 @@ copy /y /v "Bento4\Source\C++\Codecs\*.h" src
 copy /y /v "Bento4\Source\C++\Codecs\*.cpp" src
 
 copy /y /v "Bento4\Source\C++\Crypto\*.h" src
-copy /y /v "Bento4\Source\C++\Crypto\*.cpp" src
+echo n | copy /-y /v "Bento4\Source\C++\Crypto\*.cpp" src
 
 copy /y /v "Bento4\Source\C++\MetaData\*.h" src
 copy /y /v "Bento4\Source\C++\MetaData\*.cpp" src
@@ -51,5 +51,6 @@ copy /y /v include upload\include\mp4decrypt
 
 REM Copy the Debug version of the C Runtime from VS 2019 so we can use the Debug build in VS 2017
 copy /y /v "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Redist\MSVC\14.29.30133\debug_nonredist\x64\Microsoft.VC142.DebugCRT\vcruntime140_1d.dll" upload\Debug
+copy /y /v "Bento4\Source\C++\Crypto\Ap4AesBlockCipher.cpp" upload
 
 exit /b
