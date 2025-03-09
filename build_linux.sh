@@ -9,7 +9,7 @@ mkdir upload/Release
 
 git clone https://github.com/axiomatic-systems/Bento4
 ls
-ls upload
+ls /upload
 # Copy the source files which will be overwritten
 cp src\*.cpp temp
 
