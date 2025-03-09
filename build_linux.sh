@@ -15,15 +15,12 @@ cp -r src/. temp
 
 # Copy over the source files from Bento4
 cp -r Bento4/Source/C++/Core/. src
-
 cp -r Bento4/Source/C++/Codecs/. src
-
 cp -r Bento4/Source/C++/Crypto/. src
+cp -r Bento4/Source/C++/MetaData/. src
 
 # Copy back the files which were overwritten
 cp -r temp/. src
-
-cp -r Bento4/Source/C++/MetaData/. src
 
 # Configure CMake for Debug build
 cmake -B build -DCMAKE_BUILD_TYPE=Debug
@@ -32,9 +29,7 @@ cmake -B build -DCMAKE_BUILD_TYPE=Debug
 cmake --build build --config Debug
 
 # Copy over the built files
-# cp build/Debug/*.dll upload/Debug/
-# cp build/Debug/mp4decrypt.lib upload/Debug/mp4decrypt_debug.lib
-# cp build/Debug/*.pdb upload/Debug/
+cp build/libmp4decrypt.so upload/Debug
 
 # Clean up before we run CMake again
 rm -rf build
@@ -46,10 +41,8 @@ cmake -B build -DCMAKE_BUILD_TYPE=Release
 cmake --build build --config Release
 
 # Copy over the built files
-# cp build/Release/*.dll upload/Release/
-# cp build/Release/*.lib upload/Release/
+cp build/libmp4decrypt.so upload/Release
 
 # Copy over the headers
 cp -r include/. upload/include/mp4decrypt
-echo "Listing build files..."
-ls -R /home/runner/work/bento4-mp4decrypt/bento4-mp4decrypt/build
+cp src/Ap4AesBlockCipher.cpp upload
