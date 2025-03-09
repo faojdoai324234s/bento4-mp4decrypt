@@ -45,4 +45,3 @@ cp build/libmp4decrypt.so upload/Release
 
 # Copy over the headers
 cp -r include/. upload/include/mp4decrypt
-cp src/Ap4AesBlockCipher.cpp upload
