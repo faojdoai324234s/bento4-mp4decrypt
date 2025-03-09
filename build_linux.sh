@@ -37,7 +37,7 @@ cmake --build build --config Debug
 # cp build/Debug/*.pdb upload/Debug/
 
 # Clean up before we run CMake again
-rmdir -r build
+rm -rf build
 
 # Configure CMake for Release build
 cmake -B build -DCMAKE_BUILD_TYPE=Release
