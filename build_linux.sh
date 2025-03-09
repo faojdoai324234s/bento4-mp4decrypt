@@ -12,24 +12,18 @@ git clone https://github.com/axiomatic-systems/Bento4
 
 # Copy the source files which will be overwritten
 cp -r src/. temp
-echo "List temp files..."
-ls temp
 
 # Copy over the source files from Bento4
-cp Bento4/Source/C++/Core/. src/
-cp Bento4/Source/C++/Core/. src/
+cp -r Bento4/Source/C++/Core/. src
 
-cp Bento4/Source/C++/Codecs/. src/
-cp Bento4/Source/C++/Codecs/. src/
+cp -r Bento4/Source/C++/Codecs/. src
 
-cp Bento4/Source/C++/Crypto/. src/
-cp Bento4/Source/C++/Crypto/. src/
+cp -r Bento4/Source/C++/Crypto/. src
 
 # Copy back the files which were overwritten
-cp temp/. src/
+cp -r temp/. src
 
-cp Bento4/Source/C++/MetaData/. src/
-cp Bento4/Source/C++/MetaData/. src/
+cp -r Bento4/Source/C++/MetaData/. src
 
 # Configure CMake for Debug build
 cmake -B build -DCMAKE_BUILD_TYPE=Debug
@@ -43,7 +37,7 @@ cmake --build build --config Debug
 # cp build/Debug/*.pdb upload/Debug/
 
 # Clean up before we run CMake again
-rmdir /s /q build/
+rmdir -r build
 
 # Configure CMake for Release build
 cmake -B build -DCMAKE_BUILD_TYPE=Release
@@ -56,4 +50,4 @@ cmake --build build --config Release
 # cp build/Release/*.lib upload/Release/
 
 # Copy over the headers
-cp include/. upload/include/mp4decrypt/
+cp -r include/. upload/include/mp4decrypt
