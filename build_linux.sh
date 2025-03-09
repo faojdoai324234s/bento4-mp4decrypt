@@ -11,23 +11,23 @@ mkdir upload/Release
 git clone https://github.com/axiomatic-systems/Bento4
 
 # Copy the source files which will be overwritten
-cp src/*.cpp temp/
+cp src/. temp/
 
 # Copy over the source files from Bento4
-cp "Bento4/Source/C++/Core/*.h" src/
-cp "Bento4/Source/C++/Core/*.cpp" src/
+cp "Bento4/Source/C++/Core/." src/
+cp "Bento4/Source/C++/Core/." src/
 
-cp "Bento4/Source/C++/Codecs/*.h" src/
-cp "Bento4/Source/C++/Codecs/*.cpp" src/
+cp "Bento4/Source/C++/Codecs/." src/
+cp "Bento4/Source/C++/Codecs/." src/
 
-cp "Bento4/Source/C++/Crypto/*.h" src/
-cp "Bento4/Source/C++/Crypto/*.cpp" src/
+cp "Bento4/Source/C++/Crypto/." src/
+cp "Bento4/Source/C++/Crypto/." src/
 
 # Copy back the files which were overwritten
-cp temp/*.cpp src/
+cp temp/. src/
 
-cp "Bento4/Source/C++/MetaData/*.h" src/
-cp "Bento4/Source/C++/MetaData/*.cpp" src/
+cp "Bento4/Source/C++/MetaData/." src/
+cp "Bento4/Source/C++/MetaData/." src/
 
 # Configure CMake for Debug build
 cmake -B build -DCMAKE_BUILD_TYPE=Debug
@@ -54,4 +54,4 @@ cmake --build build --config Release
 # cp build/Release/*.lib upload/Release/
 
 # Copy over the headers
-cp include/ upload/include/mp4decrypt/
+cp include/. upload/include/mp4decrypt/
