@@ -12,6 +12,7 @@ git clone https://github.com/axiomatic-systems/Bento4
 
 # Copy the source files which will be overwritten
 cp src/. temp
+echo "List temp files..."
 ls temp
 
 # Copy over the source files from Bento4
